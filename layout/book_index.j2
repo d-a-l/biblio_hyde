@@ -1,0 +1,51 @@
+{% extends "base.j2" %}
+
+{% block endhead %}
+{% include "juvia.j2" %}
+{% endblock endhead %}
+
+{% block bodyclasses %} class="biblio book_index" {% endblock %}
+
+{% block main -%}
+<article class="biblio">
+
+<a class="edit" rel="nofollow" title="edit in github" href="https://github.com/d-a-l/biblioteca/blob/master/content{{ content_url(resource.url) }}" target="_blank">[source]</a>
+
+<h1 class="title">
+{# <a href="{{ content_url(resource.url) }}"> #}{{ resource.meta.title }}{# </a> #}
+</h1>
+
+<div class="author">{% if resource.meta.type %}{{ resource.meta.type|capitalize }}, por{% else %}Por{% endif %} <span class="author-name">{{resource.meta.author}}</span></div>
+
+<h3>Índice</h3>
+
+{% from "macros.j2" import render_ebook_index with context  %}
+{{ render_ebook_index(resource) }}
+
+{#
+<h3 class="">Para descargar</h3>
+
+<ul>
+  <li><a href="">"{{ resource.meta.title }}" [EPUB]</a></li>
+  <li><a href="">"{{ resource.meta.title }}" [PDF]</a></li>
+</ul>
+#}
+
+<div class="main-text">
+{% mark book -%}
+{% filter markdown2|typogrify -%}
+{% block book -%}{%- endblock %}
+{%- endfilter %}
+{%- endmark %}
+</div>
+
+<div class="meta-bottom">
+<p class="meta-post"><span class="lk">Enlace Permanente: <a href="http://derechoaleer.info{{ content_url(resource.url) }}">http://derechoaleer.info{{ content_url(resource.url) }}</a></span></p>
+<hr class="post-bottom">
+</div>
+{% if resource.meta.comments_status == 'open' %}
+<div class="comments" id="comments"></div>
+{% endif %}
+</article>
+
+{%- endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.j2" %}
+
+{% block endhead %}
+{% include "juvia.j2" %}
+{% endblock endhead %}
+
+{% block bodyclasses %} class="biblio" {% endblock %}
+
+{% block main -%}
+<article class="biblio">
+
+<a class="edit" rel="nofollow" title="edit in github" href="https://github.com/d-a-l/biblioteca/blob/master/content{{ content_url(resource.url) }}" target="_blank">[source]</a>
+
+{% set book_index = site.content.resource_from_relative_path(resource.node.relative_path + '.html' ) %}
+<nav class="top-nav">Este {{ resource.meta.section_type }} pertenece al libro <a href="{{ resource.node.url }}.html">"{{ book_index.meta.title }}"</a></nav>
+
+
+<h1 class="title">
+{# <a href="{{ content_url(resource.url) }}"> #}{{ resource.meta.title }}{# </a> #}
+</h1>
+
+{% if resource.meta.show_author %}
+<div class="author">Por <span class="author-name">{{resource.meta.author}}</span></div>
+{% endif %}
+
+<div class="main-text">
+{% mark book -%}
+{% filter markdown2|typogrify -%}
+{% block book -%}{%- endblock %}
+{%- endfilter %}
+{%- endmark %}
+</div>
+
+<div class="meta-bottom">
+<p class="meta-post"><span class="lk">Enlace Permanente: <a href="http://derechoaleer.info{{ content_url(resource.url) }}">http://derechoaleer.info{{ content_url(resource.url) }}</a></span></p>
+<hr class="post-bottom">
+</div>
+{% if resource.meta.comments_status == 'open' %}
+<div class="comments" id="comments"></div>
+{% endif %}
+</article>
+
+<nav class="post_nav">
+<ul>
+{% if resource.meta.order %}
+	{% for r in resource.node.walk_resources_sorted_by_order() -%}
+	   {% if r.meta.order == resource.meta.order + 1 %}
+		<li>siguiente: <a href="{{ content_url(r.url) }}">{{ r.meta.title }}</a></li>
+	   {% endif %}
+	   {% if r.meta.order == resource.meta.order - 1 %}
+		<li>anterior:  <a href="{{ content_url(r.url) }}">{{ r.meta.title }}</a></li>
+	   {% endif %}
+	{% endfor %}
+{% endif %}
+
+   <li>Volver al índice de <a href="{{ resource.node.url }}.html">"{{ book_index.meta.title }}"</a></li>
+</ul>
+</nav>
+
+{%- endblock %}

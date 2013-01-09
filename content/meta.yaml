@@ -1,0 +1,5 @@
+extends: biblio.j2
+default_block: book
+listable: true
+status: 1
+comments_status: hidden

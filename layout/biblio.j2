@@ -1,0 +1,18 @@
+{% extends "base.j2" %}
+
+{% block bodyclasses %} class="biblio" {% endblock %}
+
+{% block main -%}
+<article class="biblio">
+
+<div class="main-text">
+{% mark book -%}
+{% filter markdown2|typogrify -%}
+{% block book -%}{%- endblock %}
+{%- endfilter %}
+{%- endmark %}
+</div>
+
+</article>
+
+{%- endblock %}
