@@ -9,11 +9,13 @@
 {% block main -%}
 <article class="biblio">
 
-<a class="edit" rel="nofollow" title="edit in github" href="https://github.com/d-a-l/biblioteca/blob/master/content{{ content_url(resource.url) }}" target="_blank">[source]</a>
+{% from "macros.j2" import render_source_link with context  %}
+{{ render_source_link(resource) }} 
 
 {% set book_index = site.content.resource_from_relative_path(resource.node.relative_path + '.html' ) %}
 <nav class="top-nav">Este {{ resource.meta.section_type }} pertenece al libro <a href="{{ resource.node.url }}.html">"{{ book_index.meta.title }}"</a></nav>
 
+{# <p>{{resource.node.relative_path + '/' + resource.source.name }} - 2 {{resource.source.relative_path}} - 3 {{resource.source.path}}</p> #}
 
 <h1 class="title">
 {# <a href="{{ content_url(resource.url) }}"> #}{{ resource.meta.title }}{# </a> #}
@@ -32,7 +34,7 @@
 </div>
 
 <div class="meta-bottom">
-<p class="meta-post"><span class="lk">Enlace Permanente: <a href="http://derechoaleer.info{{ content_url(resource.url) }}">http://derechoaleer.info{{ content_url(resource.url) }}</a></span></p>
+<p class="meta-post"><span class="lk">Enlace Permanente: <a href="{{ site.config.url_domain}}{{ content_url(resource.url) }}">{{ site.config.url_domain}}{{ content_url(resource.url) }}</a></span></p>
 <hr class="post-bottom">
 </div>
 {% if resource.meta.comments_status == 'open' %}

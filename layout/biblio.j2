@@ -5,6 +5,10 @@
 {% block main -%}
 <article class="biblio">
 
+{% if resource.meta.title %}
+<h1 class="title">{{ resource.meta.title }}</h1>
+{% endif %}
+
 <div class="main-text">
 {% mark book -%}
 {% filter markdown2|typogrify -%}

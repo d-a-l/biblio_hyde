@@ -9,13 +9,16 @@
 {% block main -%}
 <article class="biblio">
 
-<a class="edit" rel="nofollow" title="edit in github" href="https://github.com/d-a-l/biblioteca/blob/master/content{{ content_url(resource.url) }}" target="_blank">[source]</a>
+{% from "macros.j2" import render_source_link with context  %}
+{{ render_source_link(resource) }} 
 
 <h1 class="title">
 {# <a href="{{ content_url(resource.url) }}"> #}{{ resource.meta.title }}{# </a> #}
 </h1>
 
 <div class="author">{% if resource.meta.type %}{{ resource.meta.type|capitalize }}, por{% else %}Por{% endif %} <span class="author-name">{{resource.meta.author}}</span></div>
+
+<div class="main-text">
 
 <h3>Índice</h3>
 
@@ -30,17 +33,16 @@
   <li><a href="">"{{ resource.meta.title }}" [PDF]</a></li>
 </ul>
 #}
-
-<div class="main-text">
 {% mark book -%}
 {% filter markdown2|typogrify -%}
 {% block book -%}{%- endblock %}
 {%- endfilter %}
 {%- endmark %}
+
 </div>
 
 <div class="meta-bottom">
-<p class="meta-post"><span class="lk">Enlace Permanente: <a href="http://derechoaleer.info{{ content_url(resource.url) }}">http://derechoaleer.info{{ content_url(resource.url) }}</a></span></p>
+<p class="meta-post"><span class="lk">Enlace Permanente: <a href="{{ site.config.url_domain}}{{ content_url(resource.url) }}">{{ site.config.url_domain}}{{ content_url(resource.url) }}</a></span></p>
 <hr class="post-bottom">
 </div>
 {% if resource.meta.comments_status == 'open' %}

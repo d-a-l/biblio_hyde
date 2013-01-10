@@ -9,7 +9,7 @@
   {% block starthead %}{% endblock starthead %}
   <meta charset="utf-8" />
 {#  <meta charset="{{ resource.meta.charset }}"> #}
-<link rel="alternate" type="application/atom+xml" title="Derecho a Leer (Atom)" href="http://biblioteca.derechoaleer.info/blog/atom.xml" />
+<link rel="alternate" type="application/atom+xml" title="Derecho a Leer (Atom)" href="{{ site.config.url_domain }}/blog/atom.xml" />
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
        Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="{{ resource.meta.compatibility }}">
@@ -58,7 +58,7 @@
           <header class="banner clearfix">
           {% block header -%}
 	    <nav class="header-nav">
-		<ul><li><a href="http://biblioteca.derechoaleer.info">Biblioteca</a></li><li><a href="http://derechoaleer.info">Ir al Blog</a></li></ul>
+		<ul><li><a href="{{ site.config.url_domain }}">Biblioteca</a></li><li><a href="{{ site.config.url_domain }}/biblioteca">Índice de Obras</a></li><li><a href="http://derechoaleer.info">Ir al Blog</a></li></ul>
 	    </nav>
 	    <div id="barra-negra-logo">
 	      <div id="header-container">

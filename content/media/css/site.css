@@ -83,8 +83,8 @@ body {
   font-family: "DejaVuSerif",'DejaVu Serif','Bitstream Vera Serif', Georgia, georgia, serif;
   font-size: 14.3px; /* 13px; */
   line-height: 1.7em;
-  background-color: #fff;
   color: #000;
+  background-color: #F9F5E8;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -552,6 +552,31 @@ article ul li.section:before {
 
 /* nota= 1 columna: notas=2columnas*/
 
+.ebook-index {
+   -moz-column-count: 2;
+   -moz-column-gap: 40px;
+   -webkit-column-count: 2;
+   -webkit-column-gap: 40px;
+   column-count: 2;
+   column-gap: 40px;
+
+   margin: 3.5em 0;
+}
+
+.ebook-index p.section-title {
+    border-bottom: 1px solid gray;
+    margin: 4em 0 1.3em -2.25em;
+}
+
+.ebook-index p.section-title.first {
+    border-bottom: 1px solid gray;
+    margin: 0 0 1.3em -2.25em;
+}
+
+.ebook-index li {
+  font-style: italic;
+}
+
 div.notas, div.footnotes {
    -moz-column-count: 2;
    -moz-column-gap: 24px;
@@ -640,7 +665,7 @@ h1, h2 {
   font-size: 40.7px;
   letter-spacing: -3px;
   line-height: 39px;
-  width: 90%;
+  /* width: 90%; */
   font-style: normal;
   font-weight: bold;
   margin: 0 0 1em 0;
@@ -807,7 +832,7 @@ nav.post_nav p a:before{
 .biblio .top-nav {
   margin: 0 0 2.5em;
 }
-.biblio a.edit {
+.biblio .edit a {
     margin-top: 0;
 }
 article.biblio .main-text p {
@@ -820,19 +845,55 @@ article.biblio .main-text li {
     margin-top: 2.5em;
 }
 
-.biblio .top-nav, .biblio a.edit {
+.biblio .top-nav, .biblio .edit a {
   color: #666666;
   font-family: "Liberation Mono","Andale Mono",monospace;
   font-size: 12px;
   line-height: 20px;
 }
-.book_index .main-text h3 {
- border-bottom: 1px solid gray;
-}
 
+.book_index .main-text h3 {
+    background: none repeat scroll 0 0 black;
+    color: white;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 26px;
+    text-align: center;
+    text-transform: uppercase;
+}
 
 .book_index article.biblio .main-text p {
  text-indent: 0;
+}
+
+.tutorial {
+  margin-top: 3em;
+}
+
+article.biblio .main-text .tutorial p {
+    color: #444444;
+    font-size: 16px;
+    font-style: italic;
+    text-indent: 0;
+    margin: 2em 0;
+}
+
+span.img-tutorial img {
+    border: 1px solid gray;
+    margin: -0.5em 0 1em;
+    width: 638px;
+}
+
+span.img-normal-size img {
+    width: inherit;
+}
+
+
+.tutorial span.nota {
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1em;
 }
 
 /* ========= FOOTER  ========= */
@@ -860,11 +921,12 @@ footer p a:before {
 
 /* */
 
-a.edit {
-    display: block;
+.edit {
     float: right;
-    margin-top: -1em;
-    text-align: right;
+    margin-top: -2em;
+}
+
+.edit a {
     text-decoration: none;
 }
 

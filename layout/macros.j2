@@ -47,9 +47,9 @@
         {% do classes.append(item.css_class) if item.css_class -%}
         <li>
             <a title="{{ item.description }}"
-                class="{{ classes|join(' ') }}"
-                href="{{ content_url(item.url) }}">
-                {{ item.name }}
+               class="{{ classes|join(' ') }}"
+               href="{{ content_url(item.url) }}">
+               {{ item.name }}
             </a>
         </li>
         {%- endfor %}
@@ -58,21 +58,31 @@
 {%- endif %}
 {%- endmacro %}
 
+{% macro render_source_link(res) %}
+{% set source_path = '/' + resource.node.relative_path + '/' + resource.source.name %}
+<span class="edit"><a 
+  href="/como_clonar_repositorio_en_github.html"
+  title="Cómo realizar una correción de este texto a través de Github"
+>[¿cómo editar?]</a> | <a 
+  rel="nofollow" title="Editar texto fuente" target="_blank"
+  href="{{site.config.github_root}}{{ source_path|replace(site.config.root_folder, "") }}" 
+>[source]</a></span>
+{% endmacro %}
 
 {% macro render_ebook_index(res) -%}
 {% set ebook_node = site.content.node_from_relative_path(res.node.relative_path + '/' + res.source.name_without_extension) %}
-<nav>
-<ul>
+<nav class="ebook-index">
+<ol>
    {% set last_section = "" %}
    {% for r in ebook_node.walk_resources_sorted_by_order() -%}
 	{% if r.meta.section -%}
 	   {% if r.meta.section != last_section -%}
 	       {% set last_section = r.meta.section %}
-		<li class="section {% if loop.first %}first{% endif %}">{{r.meta.section}}</li>
+		<p class="section-title {% if loop.first %}first{% endif %}">{{r.meta.section}}</p>
 	   {%- endif %}
 	{%- endif %}
 	<li class="{% if loop.first %}first{% endif %}"><a href="{{r.url}}">{{r.meta.title}}</a></li>
    {% endfor -%}
-</ul>
+</ol>
 </nav>
 {%- endmacro %}
