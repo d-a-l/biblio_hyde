@@ -1,5 +1,9 @@
 {% extends "base.j2" %}
 
+{% block endhead %}
+{% include "juvia.j2" %}
+{% endblock endhead %}
+
 {% block bodyclasses %} class="biblio" {% endblock %}
 
 {% block main -%}
@@ -16,6 +20,11 @@
 {%- endfilter %}
 {%- endmark %}
 </div>
+
+<hr class="post-bottom">
+{% if resource.meta.comments_status == 'open' %}
+<div class="comments" id="comments"></div>
+{% endif %}
 
 </article>
 
